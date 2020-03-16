@@ -30,6 +30,7 @@
     "@babel/core": "7.0.0",
     "@babel/plugin-proposal-decorators": "7.8.3",
     "babel-preset-expo": "8.0.0",
+    "db-migrate-pg": "1.0.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "jest": "25.1.0",
