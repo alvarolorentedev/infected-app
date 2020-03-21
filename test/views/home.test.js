@@ -1,6 +1,16 @@
+const mockCreateGame = jest.fn()
+jest.mock('../../src/utils/useStores', () => ({
+    __esModule: true,
+    useStores: () => ({
+        gameStore: {
+            createGame: mockCreateGame
+        }
+    })
+}))
+
 import * as React from 'react'
 import { shallow } from 'enzyme'
-import Home from '../../src/views/home'
+import { Home } from '../../src/views/home'
 
 describe('<Home />', () => {
     const navigation = {
@@ -12,7 +22,7 @@ describe('<Home />', () => {
 
     beforeEach(() => {
         navigation.navigate.mockClear()
-        onCreateGame.mockClear()
+        mockCreateGame.mockClear()
     });
 
     describe('create game button', () => {
@@ -24,7 +34,7 @@ describe('<Home />', () => {
 
         test('should create a game when clicked', () => {
             createButton.simulate('click')
-            expect(onCreateGame).toHaveBeenCalled()
+            expect(mockCreateGame).toHaveBeenCalled()
         })
     });
 })

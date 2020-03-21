@@ -1,4 +1,4 @@
-import Game from '../../src/viewModels/game'
+import Game from '../../src/stores/game'
 import { random } from 'faker'
 
 describe('Game View Model', () => {
