@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { Container, Content } from 'native-base'
-import Footer from './common/footer'
+import { Container, Content, Button, Text } from 'native-base'
 
-export default ({ navigation }) => (
+export default ({ navigation, onCreateGame }) => (
       <Container>
-        <Content />
-        <Footer navigation={navigation} />
+        <Content>
+            <Button data-testid="create-button" onClick={onCreateGame}>
+                <Text>New Game</Text>
+            </Button>
+        </Content>
       </Container>
     )
