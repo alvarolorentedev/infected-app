@@ -10,7 +10,6 @@ export default class Game {
 
     @action
     createGame = () => {
-        console.log('creating game')
         this.id = this.gameService.createGame();
     }
 }
