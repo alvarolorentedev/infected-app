@@ -33,7 +33,7 @@ describe('<Home />', () => {
         });
 
         test('should create a game when clicked', () => {
-            createButton.simulate('click')
+            createButton.simulate('press')
             expect(mockCreateGame).toHaveBeenCalled()
         })
     });

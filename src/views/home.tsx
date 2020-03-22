@@ -9,7 +9,7 @@ export const Home = () => {
     return (
         <Container>
             <Content>
-                <Button data-testid="create-button" onClick={gameStore.createGame}>
+                <Button data-testid="create-button" onPress={gameStore.createGame}>
                     <Text>New Game</Text>
                 </Button>
             </Content>
