@@ -4,14 +4,13 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Home from './src/views/home'
 
 const Stack = createStackNavigator()
-function App() {
+
+export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
-
-export default App

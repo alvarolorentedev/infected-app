@@ -20,28 +20,31 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-gesture-handler": "~1.5.0",
-    "react-native-reanimated": "~1.4.0",
+    "react-native-gesture-handler": "1.5.0",
+    "react-native-reanimated": "1.4.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
-    "react-native-web": "0.11.7"
+    "react-native-web": "0.11.7",
+    "axios": "0.19.2"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
-    "@babel/plugin-proposal-decorators": "7.8.3",
-    "axios": "0.19.2",
+    "@types/jest": "25.1.4",
+    "@types/react": "16.9.0",
+    "@types/react-native": "0.60.23",
     "axios-mock-adapter": "1.17.0",
     "babel-preset-expo": "8.0.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "faker": "4.1.0",
     "jest": "25.1.0",
-    "jest-expo": "36.0.1"
+    "jest-expo": "36.0.1",
+    "typescript": "3.6.3"
   },
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
-      "<rootDir>test/setupTests.js"
+      "<rootDir>test/setupTests.ts"
     ]
   },
   "private": true

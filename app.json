@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Blank Template",
-    "slug": "cleanly-app",
+    "name": "Blank Template (TypeScript)",
+    "slug": "infecteed-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
