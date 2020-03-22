@@ -18,7 +18,7 @@ describe('<Home />', () => {
     };
     const onCreateGame = jest.fn()
 
-    const wrapper = shallow(<Home navigation={navigation} onCreateGame={onCreateGame}/>)
+    const wrapper = shallow(<Home navigation={navigation}/>)
 
     beforeEach(() => {
         navigation.navigate.mockClear()

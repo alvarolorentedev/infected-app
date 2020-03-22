@@ -1,21 +1,23 @@
-import Game from '../../src/stores/game'
-import { random } from 'faker'
+jest.mock('../../src/services/game', () => ({
+    __esModule: true,
+    createGame: jest.fn()
+}))
 
-describe('Game View Model', () => {
+import  { CreateGameResponse, createGame } from "../../src/services/game";
+import Game from '../../src/stores/game'
+import * as faker from 'faker'
+describe('Game Store', () => {
 
     describe('has action for creating game', () => {
-        const service = {
-            createGame: jest.fn()
-        }
+        it('should return an Id', async () => {
+            const expectId: string = faker.random.uuid();
+            (createGame as jest.Mock<Promise<CreateGameResponse>>)
+                .mockReturnValue(Promise.resolve({ id: expectId }))
 
-        it('should return an Id', () => {
-            const expectId = random.uuid()
-            service.createGame.mockReturnValue(expectId)
+            const game = new Game()
+            await game.createGame()
 
-            const game = new Game(service)
-            game.createGame()
-
-            expect(service.createGame).toHaveBeenCalled()
+            expect(createGame).toHaveBeenCalled()
             expect(game.id).toEqual(expectId)
         });
     });

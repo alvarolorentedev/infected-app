@@ -1,15 +1,12 @@
 import { observable, action } from 'mobx'
+import * as gameService from "../services/game"
 
 export default class Game {
     @observable
-    id = ''
-
-    constructor(gameService) {
-        this.gameService = gameService;
-    }
+    public id : string = ''
 
     @action
-    createGame = () => {
-        this.id = this.gameService.createGame();
+    createGame = async (): Promise<void> => {
+        this.id = (await gameService.createGame()).id;
     }
 }

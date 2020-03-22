@@ -3,7 +3,11 @@ import { Container, Content, Button, Text } from 'native-base'
 import { observer } from 'mobx-react'
 import { useStores } from "../utils/useStores"
 
-export const Home = () => {
+interface Props {
+    navigation: any
+}
+
+export const Home: React.FC<Props> = () => {
     const { gameStore } = useStores()
 
     return (
