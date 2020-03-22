@@ -230,9 +230,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.Start Web" />
       <item itemvalue="Jest.&lt;Home /&gt;" />
       <item itemvalue="Jest.Game Service" />
+      <item itemvalue="npm.Start Web" />
     </list>
     <recent_temporary>
       <list>
