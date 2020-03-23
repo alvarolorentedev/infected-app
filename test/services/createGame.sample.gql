@@ -1,1 +1,1 @@
-mutation { createGame() { id } }
+mutation { createGame { id } }

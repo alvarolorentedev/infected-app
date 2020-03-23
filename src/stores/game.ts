@@ -7,6 +7,6 @@ export default class Game {
 
     @action
     createGame = async (): Promise<void> => {
-        this.id = (await gameService.createGame()).id;
+        this.id = (await gameService.createGame()).id
     }
 }

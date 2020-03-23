@@ -3,7 +3,7 @@ jest.mock('../../src/services/game', () => ({
     createGame: jest.fn()
 }))
 
-import  { CreateGameResponse, createGame } from "../../src/services/game";
+import  { CreateGameResponse, createGame } from "../../src/services/game"
 import Game from '../../src/stores/game'
 import * as faker from 'faker'
 describe('Game Store', () => {
@@ -19,6 +19,6 @@ describe('Game Store', () => {
 
             expect(createGame).toHaveBeenCalled()
             expect(game.id).toEqual(expectId)
-        });
-    });
+        })
+    })
 })

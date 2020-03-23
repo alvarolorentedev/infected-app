@@ -12,5 +12,5 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

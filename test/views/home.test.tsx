@@ -15,7 +15,7 @@ import { Home } from '../../src/views/home'
 describe('<Home />', () => {
     const navigation = {
         navigate: jest.fn()
-    };
+    }
     const onCreateGame = jest.fn()
 
     const wrapper = shallow(<Home navigation={navigation}/>)
@@ -23,18 +23,18 @@ describe('<Home />', () => {
     beforeEach(() => {
         navigation.navigate.mockClear()
         mockCreateGame.mockClear()
-    });
+    })
 
     describe('create game button', () => {
         const createButton = wrapper.find('[data-testid="create-button"]')
         test('should have button with apps icon', () => {
             expect(createButton.exists()).toBeTruthy()
             expect(createButton.contains('New Game')).toBeTruthy()
-        });
+        })
 
         test('should create a game when clicked', () => {
             createButton.simulate('press')
             expect(mockCreateGame).toHaveBeenCalled()
         })
-    });
+    })
 })
