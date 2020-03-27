@@ -18,7 +18,7 @@ const logger = winston.createLogger({
         subdomain: ENV.LOGS_SUBDOMAIN,
         inputToken: ENV.LOGS_INPUT_TOKEN,
         tags: ['infecteed','app'],
-        isBulk: false,
+        isBulk: true,
         stripColors: true
     }))
   }
