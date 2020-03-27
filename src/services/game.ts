@@ -1,15 +1,28 @@
 import axios from 'axios'
+import ENV from '../utils/constants'
 
-const createGameQuery = `mutation { createGame { id } }`
+const createGameQuery = `mutation { createGame { success, id } }`
 
-export type CreateGameResponse = {
+export type createdGame = {
     success: boolean
-    id?: string
+        id?: string
+}
+type GraphQlResponse<T> = {
+    data: T
+}
+type CreateGameResponse = {
+    createGame: createdGame
 }
 
-export const createGame = async (): Promise<CreateGameResponse> => {
-    return (await axios.post<CreateGameResponse>("/graphql", {
+export const createGame = async (): Promise<createdGame> => {
+    return (await axios.post<GraphQlResponse<CreateGameResponse>>(`${ENV.SERVER_URL}/graphql`, {
         query: createGameQuery,
         variables: {}
-    })).data
+    },
+    {
+        auth: {
+            username: ENV.USERNAME,
+            password: ENV.PASSWORD
+        }
+    })).data.data.createGame
 }

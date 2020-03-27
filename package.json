@@ -4,7 +4,7 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
+    "web:prod": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
     "test:dev": "jest --watchAll"
@@ -13,9 +13,13 @@
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
+    "axios": "0.19.2",
     "expo": "36.0.0",
+    "expo-constants": "8.0.0",
+    "expo-font": "8.0.0",
     "mobx": "5.15.4",
     "mobx-react": "6.1.8",
+    "morgan": "1.10.0",
     "native-base": "2.13.8",
     "react": "16.9.0",
     "react-dom": "16.9.0",
@@ -25,7 +29,8 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-web": "0.11.7",
-    "axios": "0.19.2"
+    "winston": "3.2.1",
+    "winston-loggly-bulk": "3.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",

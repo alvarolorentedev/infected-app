@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "Infecteed",
     "slug": "infecteed-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -25,6 +25,22 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "extra":{
+      "prod":{
+        "SERVER_URL": "https://infecteed.herokuapp.com",
+        "USERNAME": "admin",
+        "PASSWORD": "supersecret",
+        "ENVIRONMENT": "production",
+        "LOGS_SUBDOMAIN":"appscat",
+        "LOGS_INPUT_TOKEN": "2869495b-ac2a-47fd-96c4-57cdeb7fb68d"
+      },
+      "dev":{
+        "SERVER_URL": "http://localhost:8080",
+        "USERNAME": "admin",
+        "PASSWORD": "supersecret",
+        "ENVIRONMENT": "development"
+      }
     }
   }
 }

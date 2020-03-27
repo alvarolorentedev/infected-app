@@ -7,6 +7,12 @@ export default class Game {
 
     @action
     createGame = async (): Promise<void> => {
-        this.id = (await gameService.createGame()).id
+        const result = await gameService.createGame()
+        if (result.success) {
+            this.id = result.id
+        }
+        else {
+            this.id = 'Error'
+        }
     }
 }
