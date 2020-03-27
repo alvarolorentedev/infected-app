@@ -12,7 +12,7 @@ export default class Game {
             this.id = result.id
         }
         else {
-            this.id = 'Error'
+            this.id = ''
         }
     }
 }
