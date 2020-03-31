@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './src/views/home'
+import Game from './src/views/game'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -27,6 +28,7 @@ export default App => {
     ready && <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Game" component={Game} />
       </Stack.Navigator>
     </NavigationContainer>
   )

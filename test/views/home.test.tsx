@@ -1,28 +1,40 @@
 const mockCreateGame = jest.fn()
 const mockJoinGame = jest.fn()
+const mockId = faker.random.uuid()
 jest.mock('../../src/utils/useStores', () => ({
     __esModule: true,
     useStores: () => ({
         gameStore: {
             createGame: mockCreateGame,
-            joinGame: mockJoinGame
+            joinGame: mockJoinGame,
+            id: mockId
         }
     })
+}))
+jest.mock('uuid', () => ({
+    __esModule: true,
+    v4: jest.fn()
 }))
 
 import * as React from 'react'
 import { shallow } from 'enzyme'
 import { Home } from '../../src/views/home'
+import { v4 } from 'uuid'
 import * as faker from 'faker'
+
+const waitMiliseconds = (time: number) => new Promise(resolve => setTimeout(() => resolve(), time))
 
 describe('<Home />', () => {
     const navigation = {
         navigate: jest.fn()
     }
+    const expectedUserId = faker.random.uuid()
 
     beforeEach(() => {
         navigation.navigate.mockClear()
         mockCreateGame.mockClear()
+        v4.mockClear()
+        v4.mockReturnValue(expectedUserId)
     })
 
     describe('create game flow', () => {
@@ -34,9 +46,13 @@ describe('<Home />', () => {
             expect(createButton.contains('New Game')).toBeTruthy()
         })
 
-        test('should create a game when clicked', () => {
+        test('should create a game when clicked', async () => {
             createButton.simulate('press')
+            await waitMiliseconds(100)
             expect(mockCreateGame).toHaveBeenCalled()
+            expect(mockJoinGame).toHaveBeenCalledWith(mockId, expectedUserId)
+            expect(navigation.navigate).toHaveBeenCalledWith("Game")
+
         })
     })
 
@@ -56,11 +72,13 @@ describe('<Home />', () => {
             expect(joinButton.contains('Join Game')).toBeTruthy()
         })
 
-        test('should create a game when clicked', () => { 
+        test('should create a game when clicked', async () => { 
             const joinButton = wrapper.find('[data-testid="create-button"]')
 
             joinButton.simulate('press')
-            expect(mockJoinGame).toHaveBeenCalledWith(expectedGameId)
+            await waitMiliseconds(100)
+            expect(mockJoinGame).toHaveBeenCalledWith(expectedGameId, expectedUserId)
+            expect(navigation.navigate).toHaveBeenCalledWith("Game")
         })
     })
 })

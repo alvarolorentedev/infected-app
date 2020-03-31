@@ -1,0 +1,1 @@
+mutation { joinGame(gameId: $gameId, userId: $userId) { success } }

@@ -13,7 +13,6 @@ const logger = winston.createLogger({
   }));
 
   if ( ENV.ENVIRONMENT === 'production' ) {
-      console.log('adding loggly')
     logger.add(new Loggly({
         subdomain: ENV.LOGS_SUBDOMAIN,
         inputToken: ENV.LOGS_INPUT_TOKEN,

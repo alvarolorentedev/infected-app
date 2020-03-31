@@ -6,11 +6,11 @@ import MockAdapter from 'axios-mock-adapter'
 import ENV from '../../src/utils/constants'
 
 describe('Game Service', () => {
-    const createGameGraphqlQuery = fs.readFileSync("test/services/createGame.sample.gql", "ascii")
+    
 
     describe('action to create a new game', () => {
+        const createGameGraphqlQuery = fs.readFileSync("test/services/createGame.sample.gql", "ascii")
         it('should call the backend to create a new game', async () => {
-            console.log(ENV.USERNAME + ":" + ENV.PASSWORD) 
             const mock = new MockAdapter(axios)
             const gameId = faker.random.uuid()
             mock.onPost(`${ENV.SERVER_URL}/graphql`, {
@@ -21,6 +21,27 @@ describe('Game Service', () => {
             const game = await GameService.createGame()
 
             expect(game).toEqual({ id: gameId, success: true })
+        })
+    })    
+    
+    describe('action to join a new game', () => {
+        const joinGameGraphqlQuery = fs.readFileSync("test/services/joinGame.sample.gql", "ascii")
+
+        it('should call the backend to create a new game', async () => {
+            const mock = new MockAdapter(axios)
+            const gameId = faker.random.uuid()
+            const userId = faker.random.uuid()
+            mock.onPost(`${ENV.SERVER_URL}/graphql`, {
+                query: joinGameGraphqlQuery,
+                variables: {
+                    gameId,
+                    userId
+                }
+            }).replyOnce(200, { data: { joinGame: { success: true }}})
+
+            const game = await GameService.joinGame(gameId, userId)
+
+            expect(game).toEqual({ success: true })
         })
     })
 })
