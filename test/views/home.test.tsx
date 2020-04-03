@@ -1,15 +1,16 @@
 const mockCreateGame = jest.fn()
 const mockJoinGame = jest.fn()
-const mockId = faker.random.uuid()
+const mockGameStore = {
+    gameStore: {
+        createGame: mockCreateGame,
+        joinGame: mockJoinGame,
+        id: faker.random.uuid(),
+        error: undefined
+    }
+}
 jest.mock('../../src/utils/useStores', () => ({
     __esModule: true,
-    useStores: () => ({
-        gameStore: {
-            createGame: mockCreateGame,
-            joinGame: mockJoinGame,
-            id: mockId
-        }
-    })
+    useStores: () => mockGameStore
 }))
 jest.mock('uuid', () => ({
     __esModule: true,
@@ -31,8 +32,11 @@ describe('<Home />', () => {
     const expectedUserId = faker.random.uuid()
 
     beforeEach(() => {
+        mockGameStore.gameStore.error = undefined
+        mockGameStore.gameStore.id = faker.random.uuid()
         navigation.navigate.mockClear()
         mockCreateGame.mockClear()
+        mockJoinGame.mockClear()
         v4.mockClear()
         v4.mockReturnValue(expectedUserId)
     })
@@ -46,13 +50,20 @@ describe('<Home />', () => {
             expect(createButton.contains('New Game')).toBeTruthy()
         })
 
-        test('should create a game when clicked', async () => {
+        test('should create a game when clicked and navigate', async () => {
+            mockGameStore.gameStore.error = undefined
             createButton.simulate('press')
             await waitMiliseconds(100)
             expect(mockCreateGame).toHaveBeenCalled()
-            expect(mockJoinGame).toHaveBeenCalledWith(mockId, expectedUserId)
+            expect(mockJoinGame).toHaveBeenCalledWith(mockGameStore.gameStore.id, expectedUserId)
             expect(navigation.navigate).toHaveBeenCalledWith("Game")
+        })
 
+        test('should not navigate if there is an error', async () => {
+            mockGameStore.gameStore.error = faker.random.uuid() 
+            createButton.simulate('press')
+            await waitMiliseconds(100)
+            expect(navigation.navigate).not.toHaveBeenCalledWith("Game")
         })
     })
 
@@ -72,13 +83,22 @@ describe('<Home />', () => {
             expect(joinButton.contains('Join Game')).toBeTruthy()
         })
 
-        test('should create a game when clicked', async () => { 
+        test('should join a game when clicked and navigate', async () => { 
             const joinButton = wrapper.find('[data-testid="create-button"]')
 
             joinButton.simulate('press')
             await waitMiliseconds(100)
             expect(mockJoinGame).toHaveBeenCalledWith(expectedGameId, expectedUserId)
             expect(navigation.navigate).toHaveBeenCalledWith("Game")
+        })        
+        
+        test('should not navigate if there is an error', async () => {
+            const joinButton = wrapper.find('[data-testid="create-button"]')
+
+            mockGameStore.gameStore.error = faker.random.uuid() 
+            joinButton.simulate('press')
+            await waitMiliseconds(100)
+            expect(navigation.navigate).not.toHaveBeenCalledWith("Game")
         })
     })
 })

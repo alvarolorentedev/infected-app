@@ -16,12 +16,14 @@ export const Home: React.FC<Props> = ({navigation}) => {
     const { gameStore } = useStores()
     const joinExisitingGame = async (gameId: string) => {
         await gameStore.joinGame(gameId, v4())
-        navigation.navigate('Game')
+        if(!gameStore.error)
+            navigation.navigate('Game')
     }    
     const createAndJoinGame = async () => {
         await gameStore.createGame() 
         await gameStore.joinGame(gameStore.id, v4())
-        navigation.navigate('Game') 
+        if(!gameStore.error)
+            navigation.navigate('Game') 
     }
 
     return (
