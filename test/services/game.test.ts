@@ -4,7 +4,9 @@ import * as faker from 'faker'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import ENV from '../../src/utils/constants'
-import { GameStatus, Card, PlayerStatus } from '../../src/services/game';
+import { GameStatus } from "../../src/types/GameStatus"
+import { PlayerStatus } from "../../src/types/PlayerStatus"
+import { Card } from "../../src/types/Card"
 
 describe('Game Service', () => {
     

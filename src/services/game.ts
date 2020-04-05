@@ -1,45 +1,12 @@
 import axios from 'axios'
 import ENV from '../utils/constants'
+import { Game } from '../types/Game'
+import { CreatedGame } from '../types/CreatedGame'
+import { JoinedGame } from '../types/JoinedGame'
 
 const createGameQuery = `mutation { createGame { success, id } }`
 const joinGameQuery = `mutation($gameId: String!, $userId: String!){ joinGame(gameId: $gameId, userId: $userId) { success } }`
 const GameByIdQuery = `query($gameId: String!){ game(id: $gameId){ id, status, players { name, card, status } } }`
-
-export enum Card {
-    Infected = "Infected",
-    Healthy = "Healthy"
-}
-
-export enum PlayerStatus {
-    Free = "Free",
-    Quarentained = "Quarentained"
-}
-
-export enum GameStatus {
-    NotStarted = "NotStarted",
-    Started = "Started",
-    Ended = "Ended"
-}
-
-export type Player = {
-    name: string,
-    card: Card,
-    status: PlayerStatus
-}
-
-export type Game = {
-    id: string,
-    status: GameStatus
-    players: Player[]
-}
-
-export type CreatedGame = {
-    success: boolean
-        id?: string
-}
-export type JoinedGame = {
-    success: boolean
-}
 
 type GraphQlResponse<T> = {
     data: T
