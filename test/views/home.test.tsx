@@ -75,7 +75,7 @@ describe('<Home />', () => {
             const gameIdInput = wrapper.find('[data-testid="gameId-Input"]')
             gameIdInput.prop('onChangeText')(expectedGameId)
             wrapper.update()
-        });
+        })
         test('should have button with Join Game text', () => {
             const joinButton = wrapper.find('[data-testid="create-button"]')
 

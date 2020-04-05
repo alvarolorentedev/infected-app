@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 const Stack = createStackNavigator()
 
 export default App => {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false)
     useEffect(() => { 
         (async () => {
             try {
@@ -17,13 +17,13 @@ export default App => {
                     Roboto: require('native-base/Fonts/Roboto.ttf'),
                     Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
                     ...Ionicons.font,
-                  });   
+                  })   
             } catch (error) {
                 console.log(error)
             }
             setReady(true)
           })()
-      }, []);
+      }, [])
   return (
     ready && <NavigationContainer>
       <Stack.Navigator>

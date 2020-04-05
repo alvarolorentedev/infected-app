@@ -12,7 +12,7 @@ interface Props {
 
 
 export const Home: React.FC<Props> = ({navigation}) => {
-    const [gameId, setGameId] = useState("");
+    const [gameId, setGameId] = useState("")
     const { gameStore } = useStores()
     const joinExisitingGame = async (gameId: string) => {
         await gameStore.joinGame(gameId, v4())

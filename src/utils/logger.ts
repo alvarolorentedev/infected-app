@@ -6,11 +6,11 @@ import ENV from './constants'
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
-  });
+  })
 
   logger.add(new winston.transports.Console({
     format: winston.format.simple()
-  }));
+  }))
 
   if ( ENV.ENVIRONMENT === 'production' ) {
     logger.add(new Loggly({

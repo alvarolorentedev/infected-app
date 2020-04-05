@@ -28,5 +28,5 @@ describe('<Game />', () => {
 
     test('should do stuff', () => {
         
-    });
+    })
 })
