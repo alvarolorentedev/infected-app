@@ -2,7 +2,7 @@ import axios from 'axios'
 import ENV from '../utils/constants'
 
 const createGameQuery = `mutation { createGame { success, id } }`
-const joinGameQuery = `mutation { joinGame(gameId: $gameId, userId: $userId) { success } }`
+const joinGameQuery = `mutation($gameId: String!, $userId: String!){ joinGame(gameId: $gameId, userId: $userId) { success } }`
 
 export type createdGame = {
     success: boolean

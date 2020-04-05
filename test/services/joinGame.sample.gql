@@ -1,1 +1,1 @@
-mutation { joinGame(gameId: $gameId, userId: $userId) { success } }
+mutation($gameId: String!, $userId: String!){ joinGame(gameId: $gameId, userId: $userId) { success } }
