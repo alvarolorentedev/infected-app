@@ -4,7 +4,7 @@ jest.mock('../../src/services/game', () => ({
     joinGame: jest.fn()
 }))
 
-import  { createGame, createdGame, joinGame, joinedGame } from "../../src/services/game"
+import  { createGame, CreatedGame, joinGame, JoinedGame } from "../../src/services/game"
 import Game from '../../src/stores/game'
 import * as faker from 'faker'
 describe('Game Store', () => {
@@ -18,7 +18,7 @@ describe('Game Store', () => {
     describe('has action for creating game', () => {
         it('should return an Id', async () => {
             const expectGameId: string = faker.random.uuid();
-            (createGame as jest.Mock<Promise<createdGame>>)
+            (createGame as jest.Mock<Promise<CreatedGame>>)
                 .mockReturnValue(Promise.resolve({ id: expectGameId, success: true }))
             
             await game.createGame()
@@ -30,7 +30,7 @@ describe('Game Store', () => {
         
         it('should have error if not success on creation', async () => {
             const expectId: string = faker.random.uuid();
-            (createGame as jest.Mock<Promise<createdGame>>)
+            (createGame as jest.Mock<Promise<CreatedGame>>)
                 .mockReturnValue(Promise.resolve({ success: false }));
             
             await game.createGame()
@@ -44,7 +44,7 @@ describe('Game Store', () => {
         it('should have error if server error', async () => {
             const expectId: string = faker.random.uuid();
             
-            (createGame as jest.Mock<Promise<createdGame>>)
+            (createGame as jest.Mock<Promise<CreatedGame>>)
                 .mockReturnValue(Promise.reject(new Error('server failed')))
             
             await game.createGame()
@@ -61,7 +61,7 @@ describe('Game Store', () => {
             const gameId: string = faker.random.uuid()
             const userId: string = faker.random.uuid();
 
-            (joinGame as jest.Mock<Promise<joinedGame>>)
+            (joinGame as jest.Mock<Promise<JoinedGame>>)
                 .mockReturnValue(Promise.resolve({ success: true }))
 
             await game.joinGame(gameId, userId)
@@ -73,7 +73,7 @@ describe('Game Store', () => {
         it('should have error if not success on creation', async () => {
             const gameId: string = faker.random.uuid()
             const userId: string = faker.random.uuid();
-            (joinGame as jest.Mock<Promise<joinedGame>>)
+            (joinGame as jest.Mock<Promise<JoinedGame>>)
                 .mockReturnValue(Promise.resolve({ success: false }))
 
             await game.joinGame(gameId, userId)
@@ -86,7 +86,7 @@ describe('Game Store', () => {
         it('should have error if server error', async () => {
             const gameId: string = faker.random.uuid()
             const userId: string = faker.random.uuid();
-            (joinGame as jest.Mock<Promise<joinedGame>>)
+            (joinGame as jest.Mock<Promise<JoinedGame>>)
                 .mockReturnValue(Promise.reject(new Error('server failed')))
 
             await game.joinGame(gameId, userId)

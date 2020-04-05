@@ -4,6 +4,7 @@ import * as faker from 'faker'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import ENV from '../../src/utils/constants'
+import { GameStatus, Card, PlayerStatus } from '../../src/services/game';
 
 describe('Game Service', () => {
     
@@ -42,6 +43,39 @@ describe('Game Service', () => {
             const game = await GameService.joinGame(gameId, userId)
 
             expect(game).toEqual({ success: true })
+        })
+    })
+    
+    describe('action to get game information', () => {
+        const getGameGraphqlQuery = fs.readFileSync("test/services/getGameById.sample.gql", "ascii")
+
+        it('should call the backend to create a new game', async () => {
+            const mock = new MockAdapter(axios)
+            const gameId = faker.random.uuid()
+            const expectedGame = {
+                data: {
+                    game: {
+                        id: faker.random.uuid(),
+                        status: GameStatus.NotStarted,
+                        players: [
+                            {
+                                name: faker.random.uuid(),
+                                card: Card.Healthy,
+                                status: PlayerStatus.Free
+                            }]
+                        }
+                    }
+                }
+            mock.onPost(`${ENV.SERVER_URL}/graphql`, {
+                query: getGameGraphqlQuery,
+                variables: {
+                    gameId
+                }
+            }).replyOnce(200, { data: { game: expectedGame }})
+
+            const game = await GameService.getGame(gameId)
+
+            expect(game).toEqual(expectedGame)
         })
     })
 })

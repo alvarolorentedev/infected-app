@@ -1,0 +1,1 @@
+query($gameId: String!){ game(id: $gameId){ id, status, players { name, card, status } } }
