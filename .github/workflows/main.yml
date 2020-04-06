@@ -14,3 +14,11 @@ jobs:
       run: npm install
     - name: Test
       run: npm test
+    - name: expo configure
+      uses: expo/expo-github-action@v5
+      with:
+        expo-packager: npm
+        expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+        expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+    - name: expo publish
+      run: expo publish
