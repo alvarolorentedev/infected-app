@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-console.log(`run id: ${process.env.GITHUB_RUN_NUMBER}`);
 
 const fs = require('fs')
 const file = require('../app.json')
