@@ -2,7 +2,9 @@
   "expo": {
     "name": "Infecteed",
     "slug": "infecteed-app",
-    "privacy": "public",
+    "description": "distributed card game to play with your friends or random people remote",
+    "backgroundColor":"#ffffff",
+    "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
