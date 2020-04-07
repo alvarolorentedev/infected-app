@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Infecteed",
-    "slug": "expo.io/@kanekotic/infecteed-app",
+    "slug": "infecteed-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
