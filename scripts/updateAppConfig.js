@@ -1,16 +1,12 @@
 #!/usr/bin/env node
-
-// if(!process.env.GITHUB_RUN_ID || !process.env.SERVER_URL || !process.env.SERVER_USERNAME || !process.env.SERVER_PASSWORD || !process.env.LOGS_SUBDOMAIN || process.env.LOGS_INPUT_TOKEN)
-//     throw new Error(`Not all necessary variables are declared: GITHUB_RUN_ID = ${!process.env.GITHUB_RUN_ID}, SERVER_URL = ${!!process.env.SERVER_URL}, SERVER_USERNAME = ${!process.env.SERVER_USERNAME}, SERVER_PASSWORD = ${!process.env.SERVER_PASSWORD}, LOGS_SUBDOMAIN = ${!process.env.LOGS_SUBDOMAIN}, LOGS_INPUT_TOKEN = ${!process.env.LOGS_INPUT_TOKEN}`)
-console.log(`run id: ${process.env.GITHUB_RUN_ID}`);
-console.log(`SERVER_URL: ${process.env.SERVER_URL}`);
+console.log(`run id: ${process.env.GITHUB_RUN_NUMBER}`);
 
 const fs = require('fs')
 const file = require('../app.json')
 const currentVersion = file.expo.version.split('.')
 
 //UPDATE VERSION
-file.expo.version = `${currentVersion[0]}.${currentVersion[1]}.${process.env.GITHUB_RUN_ID}`
+file.expo.version = `${currentVersion[0]}.${currentVersion[1]}.${process.env.GITHUB_RUN_NUMBER}`
 
 //SETUP SECRETS
 file.expo.extra.prod.SERVER_URL = process.env.SERVER_URL
