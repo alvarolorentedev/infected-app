@@ -17,6 +17,7 @@ jobs:
     - name: Prepare App Config
       run: node ./scripts/updateAppConfig.js
       env:
+        GITHUB_BUILD_ID: ${{ github.run_id }}
         SERVER_URL: ${{ secrets.SERVER_URL }}
         USERNAME: ${{ secrets.SERVER_USERNAME }}
         PASSWORD: ${{ secrets.SERVER_PASSWORD }}
