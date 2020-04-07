@@ -13,7 +13,15 @@ jobs:
     - name: Install
       run: npm install
     - name: Test
-      run: npm test
+      run: npm test    
+    - name: Prepare App Config
+      run: node ./scripts/updateAppConfig.js
+      env:
+        SERVER_URL: ${{ secrets.SERVER_URL }}
+        USERNAME: ${{ secrets.SERVER_USERNAME }}
+        PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+        LOGS_SUBDOMAIN: ${{ secrets.LOGS_SUBDOMAIN }}
+        LOGS_INPUT_TOKEN: ${{ secrets.LOGS_INPUT_TOKEN }}
     - name: expo configure
       uses: expo/expo-github-action@v5
       with:

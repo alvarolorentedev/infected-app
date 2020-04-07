@@ -30,12 +30,12 @@
     },
     "extra":{
       "prod":{
-        "SERVER_URL": "https://infecteed.herokuapp.com",
-        "USERNAME": "admin",
-        "PASSWORD": "supersecret",
+        "SERVER_URL": "REPLACE_ME",
+        "USERNAME": "REPLACE_ME",
+        "PASSWORD": "REPLACE_ME",
         "ENVIRONMENT": "production",
-        "LOGS_SUBDOMAIN":"appscat",
-        "LOGS_INPUT_TOKEN": "2869495b-ac2a-47fd-96c4-57cdeb7fb68d"
+        "LOGS_SUBDOMAIN":"REPLACE_ME",
+        "LOGS_INPUT_TOKEN": "REPLACE_ME"
       },
       "dev":{
         "SERVER_URL": "http://localhost:8080",
