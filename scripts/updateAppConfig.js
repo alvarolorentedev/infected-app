@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-console.log(process.env.LOGS_SUBDOMAIN)
-console.log(process.env.BUILD_NUMBER)
-if(!process.env.BUILD_NUMBER || !process.env.SERVER_URL || !process.env.SERVER_USERNAME || !process.env.SERVER_PASSWORD || !process.env.LOGS_SUBDOMAIN || process.env.LOGS_INPUT_TOKEN)
-    throw new Error(`Not all necessary variables are declared: BUILD_NUMBER = ${!process.env.BUILD_NUMBER}, SERVER_URL = ${!!process.env.SERVER_URL}, SERVER_USERNAME = ${!process.env.SERVER_USERNAME}, SERVER_PASSWORD = ${!process.env.SERVER_PASSWORD}, LOGS_SUBDOMAIN = ${!process.env.LOGS_SUBDOMAIN}, LOGS_INPUT_TOKEN = ${!process.env.LOGS_INPUT_TOKEN}`)
+// if(!process.env.GITHUB_RUN_ID || !process.env.SERVER_URL || !process.env.SERVER_USERNAME || !process.env.SERVER_PASSWORD || !process.env.LOGS_SUBDOMAIN || process.env.LOGS_INPUT_TOKEN)
+//     throw new Error(`Not all necessary variables are declared: GITHUB_RUN_ID = ${!process.env.GITHUB_RUN_ID}, SERVER_URL = ${!!process.env.SERVER_URL}, SERVER_USERNAME = ${!process.env.SERVER_USERNAME}, SERVER_PASSWORD = ${!process.env.SERVER_PASSWORD}, LOGS_SUBDOMAIN = ${!process.env.LOGS_SUBDOMAIN}, LOGS_INPUT_TOKEN = ${!process.env.LOGS_INPUT_TOKEN}`)
+console.log(`run id: ${GITHUB_RUN_ID}`);
+console.log(`SERVER_URL: ${SERVER_URL}`);
 
 const fs = require('fs')
 const file = require('../app.json')
 const currentVersion = file.expo.version.split('.')
 
 //UPDATE VERSION
-file.expo.version = `${currentVersion[0]}.${currentVersion[1]}.${process.env.BUILD_NUMBER}`
+file.expo.version = `${currentVersion[0]}.${currentVersion[1]}.${process.env.GITHUB_RUN_ID}`
 
 //SETUP SECRETS
 file.expo.extra.prod.SERVER_URL = process.env.SERVER_URL
