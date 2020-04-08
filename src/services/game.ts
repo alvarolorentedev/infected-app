@@ -3,26 +3,16 @@ import ENV from '../utils/constants'
 import { Game } from '../types/Game'
 import { CreatedGame } from '../types/CreatedGame'
 import { JoinedGame } from '../types/JoinedGame'
-
-const createGameQuery = `mutation { createGame { success, id } }`
-const joinGameQuery = `mutation($gameId: String!, $userId: String!){ joinGame(gameId: $gameId, userId: $userId) { success } }`
-const GameByIdQuery = `query($gameId: String!){ game(id: $gameId){ id, status, players { name, card, status } } }`
-
-type GraphQlResponse<T> = {
-    data: T
-}
-
-type GameResponse = {
-    game: Game
-}
-
-type CreateGameResponse = {
-    createGame: CreatedGame
-}
-
-type JoinGameResponse = {
-    joinGame: JoinedGame
-}
+//@ts-ignore
+import createGameQuery from './mutations/createGame.graphql'
+//@ts-ignore
+import joinGameQuery from './mutations/joinGame.graphql'
+//@ts-ignore
+import GameByIdQuery from './queries/getGameById.graphql'
+import { GraphQlResponse } from '../types/GraphQlResponse'
+import { GameResponse } from '../types/GameResponse'
+import { CreateGameResponse } from '../types/CreateGameResponse'
+import { JoinGameResponse } from '../types/JoinGameResponse'
 
 const settings = {
     auth: {

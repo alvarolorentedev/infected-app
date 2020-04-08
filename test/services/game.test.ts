@@ -12,7 +12,7 @@ describe('Game Service', () => {
     
 
     describe('action to create a new game', () => {
-        const createGameGraphqlQuery = fs.readFileSync("test/services/createGame.sample.gql", "ascii")
+        const createGameGraphqlQuery = fs.readFileSync(`${__dirname}/../../src/services/mutations/createGame.graphql`, "ascii")
         it('should call the backend to create a new game', async () => {
             const mock = new MockAdapter(axios)
             const gameId = faker.random.uuid()
@@ -28,7 +28,7 @@ describe('Game Service', () => {
     })    
     
     describe('action to join a new game', () => {
-        const joinGameGraphqlQuery = fs.readFileSync("test/services/joinGame.sample.gql", "ascii")
+        const joinGameGraphqlQuery = fs.readFileSync(`${__dirname}/../../src/services/mutations/joinGame.graphql`, "ascii")
 
         it('should call the backend to create a new game', async () => {
             const mock = new MockAdapter(axios)
@@ -49,7 +49,7 @@ describe('Game Service', () => {
     })
     
     describe('action to get game information', () => {
-        const getGameGraphqlQuery = fs.readFileSync("test/services/getGameById.sample.gql", "ascii")
+        const getGameGraphqlQuery = fs.readFileSync(`${__dirname}/../../src/services/queries/getGameById.graphql`, "ascii")
 
         it('should call the backend to create a new game', async () => {
             const mock = new MockAdapter(axios)
