@@ -16,7 +16,7 @@ const mockGameStore = {
 };
 jest.mock('../../src/utils/useStores', () => ({
   __esModule: true,
-  useStores: () => mockGameStore,
+  default: () => mockGameStore,
 }));
 jest.mock('uuid', () => ({
   __esModule: true,

@@ -4,8 +4,8 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import * as GameService from '../../src/services/game';
 import ENV from '../../src/utils/constants';
-import { GameStatus } from '../../src/types/GameStatus';
-import { PlayerStatus } from '../../src/types/PlayerStatus';
+import GameStatus from '../../src/types/GameStatus';
+import PlayerStatus from '../../src/types/PlayerStatus';
 import Card from '../../src/types/Card';
 
 describe('Game Service', () => {

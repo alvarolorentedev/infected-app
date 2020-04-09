@@ -3,8 +3,8 @@ import { createGame, joinGame, getGame } from '../../src/services/game';
 import { JoinedGame } from '../../src/types/JoinedGame';
 import CreatedGame from '../../src/types/CreatedGame';
 import { Game as GameType } from '../../src/types/Game';
-import { GameStatus } from '../../src/types/GameStatus';
-import { PlayerStatus } from '../../src/types/PlayerStatus';
+import GameStatus from '../../src/types/GameStatus';
+import PlayerStatus from '../../src/types/PlayerStatus';
 import Card from '../../src/types/Card';
 import GameStore from '../../src/stores/game';
 

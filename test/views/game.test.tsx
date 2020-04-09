@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import * as faker from 'faker';
-import { Game } from '../../src/views/game';
 
 const mockCreateGame = jest.fn();
 const mockJoinGame = jest.fn();
