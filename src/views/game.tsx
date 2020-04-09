@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
 import { Container, Content, Text } from 'native-base';
 import { observer } from 'mobx-react';
-import { useStores } from '../utils/useStores';
+import { StackNavigationProp } from '@react-navigation/stack';
+import useStores from '../utils/useStores';
+
+type RootStackParamList = {
+  Home: undefined;
+  Game: undefined;
+};
+
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Game'>;
 
 interface Props {
-  navigation: any;
+  navigation: HomeScreenNavigationProp;
 }
 
 export const Game: React.FC<Props> = () => {

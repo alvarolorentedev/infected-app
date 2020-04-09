@@ -21,7 +21,7 @@ describe('<Game />', () => {
     navigate: jest.fn(),
   };
 
-  beforeEach(() => {});
-
-  test('should do stuff', () => {});
+  test('should do stuff', () => {
+    // ADD TEST
+  });
 });

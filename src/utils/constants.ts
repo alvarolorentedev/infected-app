@@ -1,7 +1,7 @@
-import Constants from 'expo-constants';
+import ExpoConstants from 'expo-constants';
 
-let ENV = Constants.manifest.extra.prod;
+const constants = __DEV__
+  ? ExpoConstants.manifest.extra.dev
+  : ExpoConstants.manifest.extra.prod;
 
-if (__DEV__) ENV = Constants.manifest.extra.dev;
-
-export default ENV;
+export default constants;

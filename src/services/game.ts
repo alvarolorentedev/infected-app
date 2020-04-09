@@ -3,12 +3,14 @@ import ENV from '../utils/constants';
 import { Game } from '../types/Game';
 import CreatedGame from '../types/CreatedGame';
 import { JoinedGame } from '../types/JoinedGame';
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 // @ts-ignore
 import createGameQuery from './mutations/createGame.graphql';
 // @ts-ignore
 import joinGameQuery from './mutations/joinGame.graphql';
 // @ts-ignore
 import GameByIdQuery from './queries/getGameById.graphql';
+/* eslint-enable @typescript-eslint/ban-ts-ignore */
 import { GraphQlResponse } from '../types/GraphQlResponse';
 import { GameResponse } from '../types/GameResponse';
 import { CreateGameResponse } from '../types/CreateGameResponse';

@@ -5,6 +5,7 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './src/views/home';
 import Game from './src/views/game';
+import logger from './src/utils/logger';
 
 const Stack = createStackNavigator();
 
@@ -13,13 +14,15 @@ export default (App) => {
   useEffect(() => {
     (async () => {
       try {
+        /* eslint-disable global-require, @typescript-eslint/camelcase */
         await Font.loadAsync({
           Roboto: require('native-base/Fonts/Roboto.ttf'),
           Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
           ...Ionicons.font,
         });
+        /* eslint-enable global-require, @typescript-eslint/camelcase */
       } catch (error) {
-        console.log(error);
+        logger.error(error);
       }
       setReady(true);
     })();

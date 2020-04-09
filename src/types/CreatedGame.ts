@@ -3,4 +3,4 @@ type CreatedGame = {
   id?: string;
 };
 
-export default CreatedGame
+export default CreatedGame;
