@@ -1,8 +1,8 @@
-import { Card } from '../types/Card';
-import { PlayerStatus } from '../types/PlayerStatus';
+import Card from './Card';
+import { PlayerStatus } from './PlayerStatus';
 
 export type Player = {
-    name: string;
-    card: Card;
-    status: PlayerStatus;
+  name: string;
+  card: Card;
+  status: PlayerStatus;
 };

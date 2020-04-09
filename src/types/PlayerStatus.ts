@@ -1,5 +1,6 @@
-
-export enum PlayerStatus {
-    Free = "Free",
-    Quarentained = "Quarentained"
+enum PlayerStatus {
+  Free = 'Free',
+  Quarentained = 'Quarentained',
 }
+
+export default PlayerStatus;

@@ -1,3 +1,3 @@
 export type GraphQlResponse<T> = {
-    data: T;
+  data: T;
 };

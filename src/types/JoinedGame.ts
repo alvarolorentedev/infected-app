@@ -1,4 +1,3 @@
-
 export type JoinedGame = {
-    success: boolean;
+  success: boolean;
 };

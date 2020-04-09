@@ -1,5 +1,6 @@
-
-export enum Card {
-    Infected = "Infected",
-    Healthy = "Healthy"
+enum Card {
+  Infected = 'Infected',
+  Healthy = 'Healthy',
 }
+
+export default Card;

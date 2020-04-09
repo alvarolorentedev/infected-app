@@ -1,5 +1,6 @@
-
-export type CreatedGame = {
-    success: boolean;
-    id?: string;
+type CreatedGame = {
+  success: boolean;
+  id?: string;
 };
+
+export default CreatedGame

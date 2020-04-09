@@ -1,4 +1,5 @@
-import { CreatedGame } from './CreatedGame';
+import CreatedGame from './CreatedGame';
+
 export type CreateGameResponse = {
-    createGame: CreatedGame;
+  createGame: CreatedGame;
 };
