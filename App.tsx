@@ -21,7 +21,8 @@ export default (App) => {
         });
         /* eslint-enable global-require, @typescript-eslint/camelcase */
       } catch (error) {
-        //LOG ERROR
+        /* eslint-disable-next-line no-console */
+        console.log(error);
       }
       setReady(true);
     })();
