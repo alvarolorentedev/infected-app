@@ -5,7 +5,6 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './src/views/home';
 import Game from './src/views/game';
-import logger from './src/utils/logger';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +21,7 @@ export default (App) => {
         });
         /* eslint-enable global-require, @typescript-eslint/camelcase */
       } catch (error) {
-        logger.error(error);
+        //LOG ERROR
       }
       setReady(true);
     })();
