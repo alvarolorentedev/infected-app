@@ -10,10 +10,7 @@
     "test:dev": "jest --watchAll",
     "lint:init": "eslint --init",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "expobook:web": "./node_modules/.bin/expobook --web",
-    "expobook:ios": "./node_modules/.bin/expobook --ios",
-    "expobook:android": "./node_modules/.bin/expobook --android"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.6",
