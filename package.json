@@ -4,13 +4,16 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web:prod": "expo start --web",
+    "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
     "test:dev": "jest --watchAll",
     "lint:init": "eslint --init",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "expobook:web": "./node_modules/.bin/expobook --web",
+    "expobook:ios": "./node_modules/.bin/expobook --ios",
+    "expobook:android": "./node_modules/.bin/expobook --android"
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.6",
