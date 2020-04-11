@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Content, Button, Item, Input, Text } from 'native-base';
 import { observer } from 'mobx-react';
-import { v4 } from 'uuid';
+import uuid from 'uuid-random';
 import { StackNavigationProp } from '@react-navigation/stack';
 import useStores from '../utils/useStores';
+import GameStore from '../stores/game';
 
 type RootStackParamList = {
   Home: undefined;
@@ -14,18 +15,18 @@ type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 interface Props {
   navigation: HomeScreenNavigationProp;
+  gameStore: GameStore;
 }
 
-export const Home: React.FC<Props> = ({ navigation }: Props) => {
+export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
   const [gameId, setGameId] = useState('');
-  const { gameStore } = useStores();
   const joinExisitingGame = async (gameIdParam: string) => {
-    await gameStore.joinGame(gameIdParam, v4());
+    await gameStore.joinGame(gameIdParam, uuid());
     if (!gameStore.error) navigation.navigate('Game');
   };
   const createAndJoinGame = async () => {
     await gameStore.createGame();
-    await gameStore.joinGame(gameStore.id, v4());
+    await gameStore.joinGame(gameStore.id, uuid());
     if (!gameStore.error) navigation.navigate('Game');
   };
 
@@ -53,4 +54,6 @@ export const Home: React.FC<Props> = ({ navigation }: Props) => {
   );
 };
 
-export default observer(Home);
+export default observer((props) =>
+  Home({ gameStore: useStores().gameStore, ...props })
+);

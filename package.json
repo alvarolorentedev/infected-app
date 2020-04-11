@@ -10,7 +10,11 @@
     "test:dev": "jest --watchAll",
     "lint:init": "eslint --init",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "storybook": "start-storybook -p 7007",
+    "storybook:web": "expo start --lan --web --config storybook/app-storybook.json",
+    "storybook:ios": "expo start --lan --ios --config storybook/app-storybook.json",
+    "storybook:android": "expo start --lan --android --config storybook/app-storybook.json"
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.6",
@@ -33,10 +37,15 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-web": "0.11.7",
-    "uuid": "7.0.2"
+    "uuid-random": "1.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react-native": "^5.3.18",
+    "@storybook/react-native-server": "^5.3.18",
     "@types/faker": "4.1.10",
     "@types/jest": "25.1.4",
     "@types/node": "13.11.0",
@@ -46,6 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "axios-mock-adapter": "1.17.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-inline-import": "3.0.0",
     "babel-preset-expo": "8.0.0",
     "enzyme": "3.11.0",

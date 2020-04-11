@@ -1,26 +1,21 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { v4 } from 'uuid';
+import uuid from 'uuid-random';
 import * as faker from 'faker';
 import { Home } from '../../src/views/home';
 
 const mockCreateGame = jest.fn();
 const mockJoinGame = jest.fn();
 const mockGameStore = {
-  gameStore: {
-    createGame: mockCreateGame,
-    joinGame: mockJoinGame,
-    id: faker.random.uuid(),
-    error: undefined,
-  },
+  createGame: mockCreateGame,
+  joinGame: mockJoinGame,
+  id: faker.random.uuid(),
+  error: undefined,
 };
-jest.mock('../../src/utils/useStores', () => ({
+
+jest.mock('uuid-random', () => ({
   __esModule: true,
-  default: () => mockGameStore,
-}));
-jest.mock('uuid', () => ({
-  __esModule: true,
-  v4: jest.fn(),
+  default: jest.fn(),
 }));
 
 const waitMiliseconds = (time: number) =>
@@ -33,17 +28,19 @@ describe('<Home />', () => {
   const expectedUserId = faker.random.uuid();
 
   beforeEach(() => {
-    mockGameStore.gameStore.error = undefined;
-    mockGameStore.gameStore.id = faker.random.uuid();
+    mockGameStore.error = undefined;
+    mockGameStore.id = faker.random.uuid();
     navigation.navigate.mockClear();
     mockCreateGame.mockClear();
     mockJoinGame.mockClear();
-    v4.mockClear();
-    v4.mockReturnValue(expectedUserId);
+    uuid.mockClear();
+    uuid.mockReturnValue(expectedUserId);
   });
 
   describe('create game flow', () => {
-    const wrapper = shallow(<Home navigation={navigation} />);
+    const wrapper = shallow(
+      <Home navigation={navigation} gameStore={mockGameStore} />
+    );
 
     const createButton = wrapper.find('[data-testid="create-button"]');
     test('should have button with New Game text', () => {
@@ -52,19 +49,19 @@ describe('<Home />', () => {
     });
 
     test('should create a game when clicked and navigate', async () => {
-      mockGameStore.gameStore.error = undefined;
+      mockGameStore.error = undefined;
       createButton.simulate('press');
       await waitMiliseconds(100);
       expect(mockCreateGame).toHaveBeenCalled();
       expect(mockJoinGame).toHaveBeenCalledWith(
-        mockGameStore.gameStore.id,
+        mockGameStore.id,
         expectedUserId
       );
       expect(navigation.navigate).toHaveBeenCalledWith('Game');
     });
 
     test('should not navigate if there is an error', async () => {
-      mockGameStore.gameStore.error = faker.random.uuid();
+      mockGameStore.error = faker.random.uuid();
       createButton.simulate('press');
       await waitMiliseconds(100);
       expect(navigation.navigate).not.toHaveBeenCalledWith('Game');
@@ -72,7 +69,9 @@ describe('<Home />', () => {
   });
 
   describe('join game flow', () => {
-    const wrapper = shallow(<Home navigation={navigation} />);
+    const wrapper = shallow(
+      <Home navigation={navigation} gameStore={mockGameStore} />
+    );
     const expectedGameId = faker.random.uuid();
 
     beforeAll(() => {
@@ -99,7 +98,7 @@ describe('<Home />', () => {
     test('should not navigate if there is an error', async () => {
       const joinButton = wrapper.find('[data-testid="create-button"]');
 
-      mockGameStore.gameStore.error = faker.random.uuid();
+      mockGameStore.error = faker.random.uuid();
       joinButton.simulate('press');
       await waitMiliseconds(100);
       expect(navigation.navigate).not.toHaveBeenCalledWith('Game');

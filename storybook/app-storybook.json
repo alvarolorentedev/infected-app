@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Infecteed Storybook",
+    "slug": "infecteed-storybook-app",
+    "description": "distributed card game to play with your friends or random people remote storybook",
+    "backgroundColor":"#ffffff",
+    "privacy": "unlisted",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "entryPoint": "storybook/AppStorybook.js",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "extra":{
+      "prod":{
+        "SERVER_URL": "REPLACE_ME",
+        "USERNAME": "REPLACE_ME",
+        "PASSWORD": "REPLACE_ME",
+        "ENVIRONMENT": "production",
+        "LOGS_SUBDOMAIN":"REPLACE_ME",
+        "LOGS_INPUT_TOKEN": "REPLACE_ME"
+      },
+      "dev":{
+        "SERVER_URL": "http://localhost:8080",
+        "USERNAME": "admin",
+        "PASSWORD": "supersecret",
+        "ENVIRONMENT": "development"
+      }
+    }
+  }
+}
