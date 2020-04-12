@@ -15,12 +15,10 @@ import { GraphQlResponse } from '../types/GraphQlResponse';
 import { GameResponse } from '../types/GameResponse';
 import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
+import Base64 from 'Base64';
 
 const settings = {
-  auth: {
-    username: ENV.USERNAME,
-    password: ENV.PASSWORD,
-  },
+    headers: { 'Authorization': `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}` }
 };
 
 export const createGame = async (): Promise<CreatedGame> => {
