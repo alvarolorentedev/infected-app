@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
+import { AppLoading } from 'expo';
 import Home from './src/views/home';
 import Game from './src/views/game';
 
@@ -27,6 +28,9 @@ export default (App) => {
       setReady(true);
     })();
   }, []);
+  if (!ready) {
+    return <AppLoading />;
+  }
   return (
     ready && (
       <NavigationContainer>

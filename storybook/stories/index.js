@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react-native';
+import NativeBaseWrapper from './NativeBaseWrapper';
 
 import Game from '../../src/views/game';
 import Home from '../../src/views/home';
@@ -12,5 +13,6 @@ storiesOf('Game', module)
 .add('Game', () => <Game gameStore={baseGameStore} navigation={basenavigation}  />);
 
 storiesOf('Home', module)
+.addDecorator(getStory => <NativeBaseWrapper>{getStory()}</NativeBaseWrapper>)
 .add('Home without error', () => <Home gameStore={{ ...baseGameStore }} navigation={basenavigation}/>)
 .add('Home with error', () => <Home gameStore={{ error: "mi awesome error message", ...baseGameStore }} navigation={basenavigation}/>);
