@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import uuid from 'uuid-random';
 import * as faker from 'faker';
 import { Home } from '../../src/views/home';
 
@@ -12,11 +11,6 @@ const mockGameStore = {
   id: faker.random.uuid(),
   error: undefined,
 };
-
-jest.mock('uuid-random', () => ({
-  __esModule: true,
-  default: jest.fn(),
-}));
 
 const waitMiliseconds = (time: number) =>
   new Promise((resolve) => setTimeout(() => resolve(), time));
@@ -33,8 +27,33 @@ describe('<Home />', () => {
     navigation.navigate.mockClear();
     mockCreateGame.mockClear();
     mockJoinGame.mockClear();
-    uuid.mockClear();
-    uuid.mockReturnValue(expectedUserId);
+  });
+
+  describe('button submit enable/disable state', () => {
+    const wrapper = shallow(
+      <Home navigation={navigation} gameStore={mockGameStore} />
+    );
+
+    test('should be disable by default', () => {
+      const createButton = wrapper.find('[data-testid="create-button"]');
+      expect(createButton.prop('disabled')).toBeTruthy();
+    });
+
+    test('should be enable when mandatory fields are set', () => {
+      const userIdInput = wrapper.find('[data-testid="userId-Input"]');
+      userIdInput.prop('onChangeText')(expectedUserId);
+      wrapper.update();
+      const createButton = wrapper.find('[data-testid="create-button"]');
+      expect(createButton.prop('disabled')).toBeFalsy();
+    });
+
+    test('should be disable when mandatory fields are unset', () => {
+      const userIdInput = wrapper.find('[data-testid="userId-Input"]');
+      userIdInput.prop('onChangeText')(undefined);
+      wrapper.update();
+      const createButton = wrapper.find('[data-testid="create-button"]');
+      expect(createButton.prop('disabled')).toBeTruthy();
+    });
   });
 
   describe('create game flow', () => {
@@ -42,13 +61,20 @@ describe('<Home />', () => {
       <Home navigation={navigation} gameStore={mockGameStore} />
     );
 
-    const createButton = wrapper.find('[data-testid="create-button"]');
+    beforeAll(() => {
+      const userIdInput = wrapper.find('[data-testid="userId-Input"]');
+      userIdInput.prop('onChangeText')(expectedUserId);
+      wrapper.update();
+    });
+
     test('should have button with New Game text', () => {
+      const createButton = wrapper.find('[data-testid="create-button"]');
       expect(createButton.exists()).toBeTruthy();
       expect(createButton.contains('New Game')).toBeTruthy();
     });
 
     test('should create a game when clicked and navigate', async () => {
+      const createButton = wrapper.find('[data-testid="create-button"]');
       mockGameStore.error = undefined;
       createButton.simulate('press');
       await waitMiliseconds(100);
@@ -61,6 +87,7 @@ describe('<Home />', () => {
     });
 
     test('should not navigate if there is an error', async () => {
+      const createButton = wrapper.find('[data-testid="create-button"]');
       mockGameStore.error = faker.random.uuid();
       createButton.simulate('press');
       await waitMiliseconds(100);
@@ -75,10 +102,13 @@ describe('<Home />', () => {
     const expectedGameId = faker.random.uuid();
 
     beforeAll(() => {
+      const userIdInput = wrapper.find('[data-testid="userId-Input"]');
+      userIdInput.prop('onChangeText')(expectedUserId);
       const gameIdInput = wrapper.find('[data-testid="gameId-Input"]');
       gameIdInput.prop('onChangeText')(expectedGameId);
       wrapper.update();
     });
+
     test('should have button with Join Game text', () => {
       const joinButton = wrapper.find('[data-testid="create-button"]');
 
