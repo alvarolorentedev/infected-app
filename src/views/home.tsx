@@ -8,8 +8,7 @@ import {
   Text,
   Form,
   Label,
-  Picker,
-  Icon,
+  Toast,
 } from 'native-base';
 import { observer } from 'mobx-react';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -61,11 +60,13 @@ export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
   const joinExisitingGame = async (gameIdParam: string) => {
     await gameStore.joinGame(gameIdParam, userId);
     if (!gameStore.error) navigation.navigate('Game');
+    else Toast.show({ text: gameStore.error, buttonText: 'Okay' });
   };
   const createAndJoinGame = async () => {
     await gameStore.createGame();
     await gameStore.joinGame(gameStore.id, userId);
     if (!gameStore.error) navigation.navigate('Game');
+    else Toast.show({ text: gameStore.error, buttonText: 'Okay' });
   };
   const UpdateUsername = (name) => {
     setUserId(name);

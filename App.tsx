@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
+import { Root } from 'native-base';
 import Home from './src/views/home';
 import Game from './src/views/game';
 
@@ -33,12 +34,14 @@ export default (App) => {
   }
   return (
     ready && (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Game" component={Game} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Root>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Game" component={Game} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Root>
     )
   );
 };
