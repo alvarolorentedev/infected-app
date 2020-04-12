@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Base64 from 'Base64';
 import ENV from '../utils/constants';
 import { Game } from '../types/Game';
 import CreatedGame from '../types/CreatedGame';
@@ -15,10 +16,11 @@ import { GraphQlResponse } from '../types/GraphQlResponse';
 import { GameResponse } from '../types/GameResponse';
 import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
-import Base64 from 'Base64';
 
 const settings = {
-    headers: { 'Authorization': `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}` }
+  headers: {
+    Authorization: `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}`,
+  },
 };
 
 export const createGame = async (): Promise<CreatedGame> => {
