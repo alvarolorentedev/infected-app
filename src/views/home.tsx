@@ -57,12 +57,9 @@ const styles = StyleSheet.create({
 });
 
 export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
-  Alert.alert(
-    'debug',
-    JSON.stringify(ENV),
-    [{ text: 'OK' }],
-    { cancelable: false }
-  );
+  Alert.alert('debug', JSON.stringify(ENV), [{ text: 'OK' }], {
+    cancelable: false,
+  });
   const [gameId, setGameId] = useState('');
   const [userId, setUserId] = useState('');
   const [readyForGame, setReadyForGame] = useState(false);
