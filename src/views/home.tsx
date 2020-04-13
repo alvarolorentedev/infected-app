@@ -59,8 +59,7 @@ const styles = StyleSheet.create({
 export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
   Alert.alert(
     'debug',
-    `${ENV.USERNAME}:${ENV.PASSWORD} ` +
-      `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}`,
+    JSON.stringify(ENV),
     [{ text: 'OK' }],
     { cancelable: false }
   );
