@@ -16,7 +16,7 @@ import { GraphQlResponse } from '../types/GraphQlResponse';
 import { GameResponse } from '../types/GameResponse';
 import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
-alert(`${ENV.USERNAME}:${ENV.PASSWORD} ` + `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}`)
+
 const settings = {
   headers: {
     Authorization: `Basic ${Base64.btoa(`${ENV.USERNAME}:${ENV.PASSWORD}`)}`,
