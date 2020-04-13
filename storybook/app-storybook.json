@@ -32,16 +32,16 @@
     "extra":{
       "prod":{
         "SERVER_URL": "REPLACE_ME",
-        "USERNAME": "REPLACE_ME",
-        "PASSWORD": "REPLACE_ME",
+        "SERVER_USERNAME": "REPLACE_ME",
+        "SERVER_PASSWORD": "REPLACE_ME",
         "ENVIRONMENT": "production",
         "LOGS_SUBDOMAIN":"REPLACE_ME",
         "LOGS_INPUT_TOKEN": "REPLACE_ME"
       },
       "dev":{
         "SERVER_URL": "http://localhost:8080",
-        "USERNAME": "admin",
-        "PASSWORD": "supersecret",
+        "SERVER_USERNAME": "admin",
+        "SERVER_PASSWORD": "supersecret",
         "ENVIRONMENT": "development"
       }
     }
