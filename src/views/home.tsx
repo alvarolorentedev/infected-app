@@ -12,9 +12,12 @@ import {
 } from 'native-base';
 import { observer } from 'mobx-react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Alert } from 'react-native';
+import Base64 from 'Base64';
 import useStores from '../utils/useStores';
 import GameStore from '../stores/game';
+
+import ENV from '../utils/constants';
 
 type RootStackParamList = {
   Home: undefined;
@@ -54,6 +57,9 @@ const styles = StyleSheet.create({
 });
 
 export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
+  Alert.alert('debug', JSON.stringify(ENV), [{ text: 'OK' }], {
+    cancelable: false,
+  });
   const [gameId, setGameId] = useState('');
   const [userId, setUserId] = useState('');
   const [readyForGame, setReadyForGame] = useState(false);

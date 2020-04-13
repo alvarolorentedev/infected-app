@@ -16,7 +16,6 @@ import { GraphQlResponse } from '../types/GraphQlResponse';
 import { GameResponse } from '../types/GameResponse';
 import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
-import { Alert } from 'react-native';
 
 const settings = {
   headers: {
@@ -27,69 +26,48 @@ const settings = {
 };
 
 export const createGame = async (): Promise<CreatedGame> => {
-  try {
-    return (
-      await axios.post<GraphQlResponse<CreateGameResponse>>(
-        `${ENV.SERVER_URL}/graphql`,
-        {
-          query: createGameQuery,
-          variables: {},
-        },
-        settings
-      )
-    ).data.data.createGame;
-  } catch (error) {
-    Alert.alert('error Create Game', JSON.stringify(error), [{ text: 'OK' }], {
-      cancelable: false,
-    });
-    return null;
-  }
+  return (
+    await axios.post<GraphQlResponse<CreateGameResponse>>(
+      `${ENV.SERVER_URL}/graphql`,
+      {
+        query: createGameQuery,
+        variables: {},
+      },
+      settings
+    )
+  ).data.data.createGame;
 };
 
 export const joinGame = async (
   gameId: string,
   userId: string
 ): Promise<JoinedGame> => {
-  try {
-    return (
-      await axios.post<GraphQlResponse<JoinGameResponse>>(
-        `${ENV.SERVER_URL}/graphql`,
-        {
-          query: joinGameQuery,
-          variables: {
-            gameId,
-            userId,
-          },
+  return (
+    await axios.post<GraphQlResponse<JoinGameResponse>>(
+      `${ENV.SERVER_URL}/graphql`,
+      {
+        query: joinGameQuery,
+        variables: {
+          gameId,
+          userId,
         },
-        settings
-      )
-    ).data.data.joinGame;
-  } catch (error) {
-    Alert.alert('error Join Game', JSON.stringify(error), [{ text: 'OK' }], {
-      cancelable: false,
-    });
-    return null;
-  }
+      },
+      settings
+    )
+  ).data.data.joinGame;
 };
 
 export const getGame = async (gameId: string): Promise<Game> => {
-  try {
-    return (
-      await axios.post<GraphQlResponse<GameResponse>>(
-        `${ENV.SERVER_URL}/graphql`,
-        {
-          query: GameByIdQuery,
-          variables: {
-            gameId,
-          },
+  return (
+    await axios.post<GraphQlResponse<GameResponse>>(
+      `${ENV.SERVER_URL}/graphql`,
+      {
+        query: GameByIdQuery,
+        variables: {
+          gameId,
         },
-        settings
-      )
-    ).data.data.game;
-  } catch (error) {
-    Alert.alert('error Get Game', JSON.stringify(error), [{ text: 'OK' }], {
-      cancelable: false,
-    });
-    return null;
-  }
+      },
+      settings
+    )
+  ).data.data.game;
 };
