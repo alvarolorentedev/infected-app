@@ -20,10 +20,8 @@ jobs:
       run: node ./scripts/updateAppConfig.js
       env:
         SERVER_URL: ${{ secrets.SERVER_URL }}
-        USERNAME: ${{ secrets.SERVER_USERNAME }}
-        PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-        LOGS_SUBDOMAIN: ${{ secrets.LOGS_SUBDOMAIN }}
-        LOGS_INPUT_TOKEN: ${{ secrets.LOGS_INPUT_TOKEN }}
+        SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+        SERVER_USERNAME: ${{ secrets.SERVER_PASSWORD }}
     - name: expo configure
       uses: expo/expo-github-action@v5
       with:
