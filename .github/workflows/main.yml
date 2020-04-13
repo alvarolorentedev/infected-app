@@ -21,7 +21,7 @@ jobs:
       env:
         SERVER_URL: ${{ secrets.SERVER_URL }}
         SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-        SERVER_USERNAME: ${{ secrets.SERVER_PASSWORD }}
+        SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
     - name: expo configure
       uses: expo/expo-github-action@v5
       with:
