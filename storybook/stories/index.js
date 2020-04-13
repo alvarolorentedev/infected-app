@@ -6,7 +6,29 @@ import NativeBaseWrapper from './NativeBaseWrapper';
 import Game from '../../src/views/game';
 import Home from '../../src/views/home';
 
-const baseGameStore = {joinGame: () => {}, createGame: () => {}  } 
+const game = {
+    "id": "qert345tf",
+    "status": "NotStarted",
+    "players": [
+        {
+            "name": "pepe",
+            "card": "Healthy",
+            "status": "Free"
+        },
+        {
+            "name": "pepa",
+            "card": "Healthy",
+            "status": "Free"
+        },
+        {
+            "name": "pipa",
+            "card": "Infected",
+            "status": "Free"
+        }
+    ]
+}
+
+const baseGameStore = {joinGame: () => {}, createGame: () => {}, getGame: () => {}, game } 
 const basenavigation = { navigate: () => {} }
 
 storiesOf('Game', module)
