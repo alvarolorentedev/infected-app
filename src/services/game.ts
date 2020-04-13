@@ -19,7 +19,9 @@ import { JoinGameResponse } from '../types/JoinGameResponse';
 
 const settings = {
   headers: {
-    Authorization: `Basic ${Base64.btoa(`${ENV.SERVER_USERNAME}:${ENV.SERVER_PASSWORD}`)}`,
+    Authorization: `Basic ${Base64.btoa(
+      `${ENV.SERVER_USERNAME}:${ENV.SERVER_PASSWORD}`
+    )}`,
   },
 };
 
