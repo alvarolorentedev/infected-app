@@ -33,7 +33,7 @@ interface Props {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-  }
+  },
 });
 
 export const Game: React.FC<Props> = ({ navigation, gameStore }: Props) => {
@@ -41,13 +41,11 @@ export const Game: React.FC<Props> = ({ navigation, gameStore }: Props) => {
   return (
     <Container>
       <Content contentContainerStyle={styles.container}>
-      <H1>Game</H1>
-        <Text>
-          {game.id}
-        </Text>
+        <H1>Game</H1>
+        <Text>{game.id}</Text>
         <List>
-          {game.players.map((player, index) => (
-            <ListItem key={`players-list-item-${index}`} icon>
+          {game.players.map((player) => (
+            <ListItem key={`players-list-item-${player.name}`} icon>
               <Left>
                 <Icon style={{ fontSize: 30 }} name="ios-contacts" />
               </Left>
