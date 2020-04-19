@@ -80,6 +80,7 @@ describe('Game Store', () => {
 
       expect(joinGame).toHaveBeenCalledWith(gameId, userId);
       expect(game.id).toEqual(gameId);
+      expect(game.userId).toEqual(userId);
     });
 
     it('should have error if not success on creation', async () => {
@@ -93,6 +94,7 @@ describe('Game Store', () => {
 
       expect(joinGame).toHaveBeenCalledWith(gameId, userId);
       expect(game.id).toEqual(undefined);
+      expect(game.userId).toEqual(userId);
       expect(game.error).toEqual('Unable to join game');
     });
 
@@ -107,6 +109,7 @@ describe('Game Store', () => {
 
       expect(joinGame).toHaveBeenCalledWith(gameId, userId);
       expect(game.id).toEqual(undefined);
+      expect(game.userId).toEqual(userId);
       expect(game.error).toEqual('server failed');
     });
   });

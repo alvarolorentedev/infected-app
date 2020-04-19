@@ -1,10 +1,15 @@
 import { observable, action } from 'mobx';
 import { createGame, joinGame, getGame } from '../services/game';
 import { Game } from '../types/Game';
+import { Player } from '../types/Player';
 
 export default class GameStore {
+
   @observable
-  public id: string;
+  public id: string;  
+  
+  @observable
+  public userId: string;
 
   @observable
   public game: Game;
@@ -29,6 +34,7 @@ export default class GameStore {
   @action
   joinGame = async (gameId: string, userId: string): Promise<void> => {
     try {
+      this.userId = userId
       const result = await joinGame(gameId, userId);
       if (result.success) {
         this.id = gameId;
@@ -49,5 +55,15 @@ export default class GameStore {
       this.id = undefined;
       this.error = error.message;
     }
+  };
+
+  @action
+  start = async (): Promise<void> => {
+    Promise.reject("Not Implemented")
+  };
+
+  @action
+  vote = async (): Promise<void> => {
+    Promise.reject("Not Implemented")
   };
 }

@@ -5,7 +5,8 @@ import { registerRootComponent } from 'expo';
 import './rn-addons';
 
 configure(() => {
-  require('./stories');
+  require('./stories/Home');
+  require('./stories/Game');
 }, module);
 
 const StorybookUIRoot = getStorybookUI({

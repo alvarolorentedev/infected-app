@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
-  picker: { display: 'flex', justifyContent: 'space-between', marginLeft: 10 },
   button: {
     marginHorizontal: 10,
     marginVertical: 20,

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react-native';
-import NativeBaseWrapper from './NativeBaseWrapper';
+import NativeBaseWrapper from '../NativeBaseWrapper';
 
-import Game from '../../src/views/game';
-import Home from '../../src/views/home';
+import Home from '../../../src/views/home';
 
 const game = {
     "id": "qert345tf",
@@ -30,9 +29,6 @@ const game = {
 
 const baseGameStore = {joinGame: () => {}, createGame: () => {}, getGame: () => {}, game } 
 const basenavigation = { navigate: () => {} }
-
-storiesOf('Game', module)
-.add('Game', () => <Game gameStore={baseGameStore} navigation={basenavigation}  />);
 
 storiesOf('Home', module)
 .addDecorator(getStory => <NativeBaseWrapper>{getStory()}</NativeBaseWrapper>)
