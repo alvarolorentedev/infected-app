@@ -4,10 +4,9 @@ import { Game } from '../types/Game';
 import { Player } from '../types/Player';
 
 export default class GameStore {
-
   @observable
-  public id: string;  
-  
+  public id: string;
+
   @observable
   public userId: string;
 
@@ -34,7 +33,7 @@ export default class GameStore {
   @action
   joinGame = async (gameId: string, userId: string): Promise<void> => {
     try {
-      this.userId = userId
+      this.userId = userId;
       const result = await joinGame(gameId, userId);
       if (result.success) {
         this.id = gameId;
@@ -59,11 +58,11 @@ export default class GameStore {
 
   @action
   start = async (): Promise<void> => {
-    Promise.reject("Not Implemented")
+    Promise.reject(Error('Not Implemented'));
   };
 
   @action
   vote = async (): Promise<void> => {
-    Promise.reject("Not Implemented")
+    Promise.reject(Error('Not Implemented'));
   };
 }
