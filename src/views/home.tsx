@@ -58,12 +58,14 @@ export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
   const [readyForGame, setReadyForGame] = useState(false);
   const joinExisitingGame = async (gameIdParam: string) => {
     await gameStore.joinGame(gameIdParam, userId);
+    await gameStore.getGame(gameStore.id);
     if (!gameStore.error) navigation.navigate('Game');
     else Toast.show({ text: gameStore.error, buttonText: 'Okay' });
   };
   const createAndJoinGame = async () => {
     await gameStore.createGame();
     await gameStore.joinGame(gameStore.id, userId);
+    await gameStore.getGame(gameStore.id);
     if (!gameStore.error) navigation.navigate('Game');
     else Toast.show({ text: gameStore.error, buttonText: 'Okay' });
   };

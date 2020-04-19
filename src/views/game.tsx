@@ -278,7 +278,7 @@ export const Game: React.FC<Props> = ({ navigation, gameStore }: Props) => {
               <Text>Invite</Text>
             </Button>
           )}
-          {game.status === GameStatus.NotStarted && (
+          {game.status === GameStatus.NotStarted && otherPlayers.length > 1 && (
             <Button style={styles.button} onPress={gameStore.start}>
               <Icon name="play" />
               <Text>Start</Text>

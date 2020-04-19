@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { createGame, joinGame, getGame } from '../services/game';
 import { Game } from '../types/Game';
 import { Player } from '../types/Player';
+import GameStatus from '../types/GameStatus';
 
 export default class GameStore {
   @observable
@@ -45,10 +46,16 @@ export default class GameStore {
     }
   };
 
+  private intervalId = undefined;
+
   @action
   getGame = async (gameId: string): Promise<void> => {
+    this.intervalId = window.setInterval(() => {
+      this.getGame(gameId);
+    }, 5000);
     try {
       this.game = await getGame(gameId);
+      if (this.game.status === GameStatus.Ended) clearInterval(this.intervalId);
       this.error = undefined;
     } catch (error) {
       this.id = undefined;
