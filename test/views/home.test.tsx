@@ -2,12 +2,15 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import * as faker from 'faker';
 import { Home } from '../../src/views/home';
+import { getGame } from '../../src/services/game';
 
 const mockCreateGame = jest.fn();
 const mockJoinGame = jest.fn();
+const mockGetGame = jest.fn();
 const mockGameStore = {
   createGame: mockCreateGame,
   joinGame: mockJoinGame,
+  getGame: mockGetGame,
   id: faker.random.uuid(),
   error: undefined,
 };
@@ -27,6 +30,7 @@ describe('<Home />', () => {
     navigation.navigate.mockClear();
     mockCreateGame.mockClear();
     mockJoinGame.mockClear();
+    mockGetGame.mockClear();
   });
 
   describe('button submit enable/disable state', () => {
@@ -83,6 +87,7 @@ describe('<Home />', () => {
         mockGameStore.id,
         expectedUserId
       );
+      expect(mockGetGame).toHaveBeenCalled();
       expect(navigation.navigate).toHaveBeenCalledWith('Game');
     });
 
@@ -122,6 +127,7 @@ describe('<Home />', () => {
       joinButton.simulate('press');
       await waitMiliseconds(100);
       expect(mockJoinGame).toHaveBeenCalledWith(expectedGameId, expectedUserId);
+      expect(mockGetGame).toHaveBeenCalled();
       expect(navigation.navigate).toHaveBeenCalledWith('Game');
     });
 

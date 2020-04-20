@@ -17,6 +17,17 @@ jest.mock('../../src/services/game', () => ({
 
 describe('Game Store', () => {
   const game = new GameStore();
+  let realSetInterval;
+
+  beforeAll(() => {
+    realSetInterval = window.setInterval;
+    window.setInterval = jest.fn();
+  });
+
+  afterAll(() => {
+    window.setInterval = realSetInterval;
+  });
+
   beforeEach(() => {
     game.id = undefined;
     game.error = undefined;
