@@ -1,8 +1,6 @@
 import { observable, action } from 'mobx';
 import { createGame, joinGame, getGame } from '../services/game';
 import { Game } from '../types/Game';
-import { Player } from '../types/Player';
-import GameStatus from '../types/GameStatus';
 
 export default class GameStore {
   @observable
@@ -39,9 +37,6 @@ export default class GameStore {
       if (result.success) {
         this.id = gameId;
         this.error = undefined;
-        this.intervalId = window.setInterval(() => {
-          this.getGame(gameId);
-        }, 5000);
       } else throw new Error('Unable to join game');
     } catch (error) {
       this.id = undefined;
@@ -52,10 +47,21 @@ export default class GameStore {
   private intervalId = undefined;
 
   @action
+  startRefresh = (): void => {
+    this.intervalId = window.setInterval(() => {
+      this.getGame(this.id);
+    }, 5000);
+  };
+
+  @action
+  stopRefresh = (): void => {
+    if (this.intervalId) clearInterval(this.intervalId);
+  };
+
+  @action
   getGame = async (gameId: string): Promise<void> => {
     try {
       this.game = await getGame(gameId);
-      if (this.game.status === GameStatus.Ended) clearInterval(this.intervalId);
       this.error = undefined;
     } catch (error) {
       this.id = undefined;

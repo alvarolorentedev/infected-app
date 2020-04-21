@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   Content,
@@ -248,7 +248,13 @@ const InFreeState = (
   );
 };
 
-export const Game: React.FC<Props> = ({ navigation, gameStore }: Props) => {
+export const Game: React.FC<Props> = ({ gameStore }: Props) => {
+  useEffect(() => {
+    gameStore.startRefresh();
+    return () => {
+      gameStore.stopRefresh();
+    };
+  }, [gameStore]);
   const { game, userId } = gameStore;
   const otherPlayers = game.players.filter((player) => player.name !== userId);
   const currentPlayer = game.players.filter(
