@@ -7,6 +7,7 @@ import ENV from '../../src/utils/constants';
 import GameStatus from '../../src/types/GameStatus';
 import PlayerStatus from '../../src/types/PlayerStatus';
 import Card from '../../src/types/Card';
+import { votePlayer, startGame } from '../../src/services/game';
 
 describe('Game Service', () => {
   describe('action to create a new game', () => {
@@ -53,6 +54,58 @@ describe('Game Service', () => {
         .replyOnce(200, { data: { joinGame: { success: true } } });
 
       const game = await GameService.joinGame(gameId, userId);
+
+      expect(game).toEqual({ success: true });
+    });
+  });
+
+  describe('action to start a game', () => {
+    const startGameGraphqlQuery = fs.readFileSync(
+      `${__dirname}/../../src/services/mutations/startGame.graphql`,
+      'ascii'
+    );
+
+    it('should call the backend to start game', async () => {
+      const mock = new MockAdapter(axios);
+      const gameId = faker.random.uuid();
+      mock
+        .onPost(`${ENV.SERVER_URL}/graphql`, {
+          query: startGameGraphqlQuery,
+          variables: {
+            gameId
+          },
+        })
+        .replyOnce(200, { data: { startGame: { success: true } } });
+
+      const game = await GameService.startGame(gameId);
+
+      expect(game).toEqual({ success: true });
+    });
+  });
+
+  describe('action to vote for a player', () => {
+    const votePlayerGraphqlQuery = fs.readFileSync(
+      `${__dirname}/../../src/services/mutations/votePlayer.graphql`,
+      'ascii'
+    );
+
+    it('should call the backend to vote for a player', async () => {
+      const mock = new MockAdapter(axios);
+      const gameId = faker.random.uuid();
+      const from = faker.random.uuid();
+      const to = faker.random.uuid();
+      mock
+        .onPost(`${ENV.SERVER_URL}/graphql`, {
+          query: votePlayerGraphqlQuery,
+          variables: {
+            gameId,
+            from,
+            to
+          },
+        })
+        .replyOnce(200, { data: { votePlayer: { success: true } } });
+
+      const game = await GameService.votePlayer(gameId, from, to);
 
       expect(game).toEqual({ success: true });
     });

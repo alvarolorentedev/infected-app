@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 import { createGame, joinGame, getGame } from '../../src/services/game';
-import { JoinedGame } from '../../src/types/JoinedGame';
+import { JoinedGame } from '../../src/types/SimpleResponse';
 import CreatedGame from '../../src/types/CreatedGame';
 import { Game as GameType } from '../../src/types/Game';
 import GameStatus from '../../src/types/GameStatus';

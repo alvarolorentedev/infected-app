@@ -1,5 +1,5 @@
-import { JoinedGame } from './JoinedGame';
+import { SimpleResponse } from './SimpleResponse';
 
 export type JoinGameResponse = {
-  joinGame: JoinedGame;
+  joinGame: SimpleResponse;
 };

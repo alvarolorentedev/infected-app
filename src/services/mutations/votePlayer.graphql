@@ -1,0 +1,1 @@
+mutation($gameId: String!, $from: String!, $to: String!){ joinGame(gameId: $gameId, from: $from, to: $to) { success } }

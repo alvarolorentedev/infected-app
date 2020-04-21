@@ -1,0 +1,1 @@
+mutation($gameId: String!){ (gameId: $gameId) { success } }
