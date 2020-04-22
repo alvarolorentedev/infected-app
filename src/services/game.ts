@@ -22,7 +22,6 @@ import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
 import { StartGameResponse } from '../types/StartGameResponse';
 import { VotePlayerResponse } from '../types/VotePlayerResponse';
-import { Vote } from '../../../infected-server/src/types/vote';
 
 const settings = {
   headers: {
