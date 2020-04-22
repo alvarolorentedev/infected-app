@@ -1,5 +1,11 @@
 import { observable, action } from 'mobx';
-import { createGame, joinGame, getGame } from '../services/game';
+import {
+  createGame,
+  joinGame,
+  getGame,
+  startGame,
+  votePlayer,
+} from '../services/game';
 import { Game } from '../types/Game';
 
 export default class GameStore {
@@ -71,11 +77,23 @@ export default class GameStore {
 
   @action
   start = async (): Promise<void> => {
-    Promise.reject(Error('Not Implemented'));
+    try {
+      await startGame(this.id);
+      this.error = undefined;
+    } catch (error) {
+      this.id = undefined;
+      this.error = error.message;
+    }
   };
 
   @action
-  vote = async (): Promise<void> => {
-    Promise.reject(Error('Not Implemented'));
+  vote = async (from: string, to: string): Promise<void> => {
+    try {
+      await votePlayer(this.id, from, to);
+      this.error = undefined;
+    } catch (error) {
+      this.id = undefined;
+      this.error = error.message;
+    }
   };
 }

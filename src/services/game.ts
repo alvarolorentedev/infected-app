@@ -86,7 +86,7 @@ export const startGame = async (gameId: string): Promise<SimpleResponse> => {
       {
         query: startGameQuery,
         variables: {
-          gameId
+          gameId,
         },
       },
       settings
@@ -94,7 +94,11 @@ export const startGame = async (gameId: string): Promise<SimpleResponse> => {
   ).data.data.startGame;
 };
 
-export const votePlayer = async (gameId: string, from: string, to: string): Promise<SimpleResponse> => {
+export const votePlayer = async (
+  gameId: string,
+  from: string,
+  to: string
+): Promise<SimpleResponse> => {
   return (
     await axios.post<GraphQlResponse<VotePlayerResponse>>(
       `${ENV.SERVER_URL}/graphql`,
@@ -103,7 +107,7 @@ export const votePlayer = async (gameId: string, from: string, to: string): Prom
         variables: {
           gameId,
           from,
-          to
+          to,
         },
       },
       settings

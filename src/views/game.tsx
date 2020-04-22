@@ -159,7 +159,7 @@ const right = (
   player: Player,
   currentPlayer: Player,
   game: GameType,
-  action: () => void
+  action: (from: string, to: string) => Promise<void>
 ): JSX.Element => {
   if (
     currentPlayer.status === PlayerStatus.Quarentained ||
@@ -170,7 +170,10 @@ const right = (
     /* eslint-disable-next-line consistent-return */
     return (
       <Right>
-        <Button transparent onPress={action}>
+        <Button
+          transparent
+          onPress={() => action(currentPlayer.name, player.name)}
+        >
           <Text>Vote</Text>
         </Button>
       </Right>
@@ -223,7 +226,7 @@ const InFreeState = (
   players: Player[],
   currentPlayer: Player,
   game: GameType,
-  action: () => void
+  action: (from: string, to: string) => Promise<void>
 ): JSX.Element => {
   const list = players
     .filter((player) => player.status === PlayerStatus.Free)

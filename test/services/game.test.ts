@@ -72,7 +72,7 @@ describe('Game Service', () => {
         .onPost(`${ENV.SERVER_URL}/graphql`, {
           query: startGameGraphqlQuery,
           variables: {
-            gameId
+            gameId,
           },
         })
         .replyOnce(200, { data: { startGame: { success: true } } });
@@ -100,7 +100,7 @@ describe('Game Service', () => {
           variables: {
             gameId,
             from,
-            to
+            to,
           },
         })
         .replyOnce(200, { data: { votePlayer: { success: true } } });
