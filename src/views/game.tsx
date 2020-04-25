@@ -14,7 +14,7 @@ import {
   CardItem,
 } from 'native-base';
 import { observer } from 'mobx-react';
-import { StyleSheet, Image, View, Share } from 'react-native';
+import { StyleSheet, Image, View, Share, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import useStores from '../utils/useStores';
 import GameStore from '../stores/game';
@@ -186,7 +186,10 @@ const right = (
     /* eslint-disable-next-line consistent-return */
     return (
       <Right>
-        <Button transparent onPress={action}>
+        <Button
+          transparent
+          onPress={() => action(currentPlayer.name, player.name)}
+        >
           <Text>Vote</Text>
         </Button>
       </Right>
@@ -269,46 +272,51 @@ export const Game: React.FC<Props> = ({ gameStore }: Props) => {
   return (
     <Container>
       <Content contentContainerStyle={styles.container}>
-        {/* eslint-disable-next-line global-require */}
-        <Image source={require('../../assets/icon.png')} style={styles.logo} />
-        <View style={styles.buttonContainer}>
-          {game.status === GameStatus.NotStarted && (
-            <Button
-              bordered
-              style={styles.button}
-              onPress={
-                () =>
-                  Share.share({
-                    message: `Join the infecteed game created with: ${game.id}`,
-                  }) /* eslint-disable-same-line prettier/prettier */
-              }
-            >
-              <Icon name="people" />
-              <Text>Invite</Text>
-            </Button>
-          )}
-          {game.status === GameStatus.NotStarted && otherPlayers.length > 1 && (
-            <Button style={styles.button} onPress={gameStore.start}>
-              <Icon name="play" />
-              <Text>Start</Text>
-            </Button>
-          )}
-        </View>
-        <CardComponent style={styles.rules}>
-          <CardItem header>
-            <Icon name={rule.icon} />
-            <Text>{rule.header}</Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <Text>{rule.body}</Text>
-            </Body>
-          </CardItem>
-        </CardComponent>
-        <List>
-          {InFreeState(otherPlayers, currentPlayer, game, gameStore.vote)}
-          {InQuarentainState(otherPlayers)}
-        </List>
+        <ScrollView>
+          <Image
+            /* eslint-disable-next-line global-require */
+            source={require('../../assets/icon.png')}
+            style={styles.logo}
+          />
+          <View style={styles.buttonContainer}>
+            {game.status === GameStatus.NotStarted && (
+              <Button
+                bordered
+                style={styles.button}
+                onPress={
+                  () =>
+                    Share.share({
+                      message: `Join the infecteed game created with: ${game.id}`,
+                    }) /* eslint-disable-same-line prettier/prettier */
+                }
+              >
+                <Icon name="people" />
+                <Text>Invite</Text>
+              </Button>
+            )}
+            {game.status === GameStatus.NotStarted && otherPlayers.length > 1 && (
+              <Button style={styles.button} onPress={gameStore.start}>
+                <Icon name="play" />
+                <Text>Start</Text>
+              </Button>
+            )}
+          </View>
+          <CardComponent style={styles.rules}>
+            <CardItem header>
+              <Icon name={rule.icon} />
+              <Text>{rule.header}</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>{rule.body}</Text>
+              </Body>
+            </CardItem>
+          </CardComponent>
+          <List>
+            {InFreeState(otherPlayers, currentPlayer, game, gameStore.vote)}
+            {InQuarentainState(otherPlayers)}
+          </List>
+        </ScrollView>
       </Content>
     </Container>
   );

@@ -70,7 +70,6 @@ export default class GameStore {
       this.game = await getGame(gameId);
       this.error = undefined;
     } catch (error) {
-      this.id = undefined;
       this.error = error.message;
     }
   };
@@ -81,7 +80,6 @@ export default class GameStore {
       await startGame(this.id);
       this.error = undefined;
     } catch (error) {
-      this.id = undefined;
       this.error = error.message;
     }
   };
@@ -92,7 +90,6 @@ export default class GameStore {
       await votePlayer(this.id, from, to);
       this.error = undefined;
     } catch (error) {
-      this.id = undefined;
       this.error = error.message;
     }
   };
