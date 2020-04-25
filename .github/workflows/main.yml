@@ -30,3 +30,5 @@ jobs:
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
     - name: expo publish
       run: expo publish
+    - name: expo build android
+      run: expo build:android -t app-bundle

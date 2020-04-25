@@ -20,13 +20,21 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 15000
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kanekotic.infecteed",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.kanekotic.infecteed",
+      "versionCode": 1
     },
     "extra":{
       "prod":{
