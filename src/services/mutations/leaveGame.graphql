@@ -1,0 +1,1 @@
+mutation($gameId: String!, $userId: String!){ leaveGame(gameId: $gameId, userId: $userId) { success } }

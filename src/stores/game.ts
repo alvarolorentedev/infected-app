@@ -5,6 +5,7 @@ import {
   getGame,
   startGame,
   votePlayer,
+  leaveGame
 } from '../services/game';
 import { Game } from '../types/Game';
 
@@ -50,24 +51,10 @@ export default class GameStore {
     }
   };
 
-  private intervalId = undefined;
-
   @action
-  startRefresh = (): void => {
-    this.intervalId = window.setInterval(() => {
-      this.getGame(this.id);
-    }, 5000);
-  };
-
-  @action
-  stopRefresh = (): void => {
-    if (this.intervalId) clearInterval(this.intervalId);
-  };
-
-  @action
-  getGame = async (gameId: string): Promise<void> => {
+  getGame = async (): Promise<void> => {
     try {
-      this.game = await getGame(gameId);
+      this.game = await getGame(this.id);
       this.error = undefined;
     } catch (error) {
       this.error = error.message;
@@ -88,6 +75,15 @@ export default class GameStore {
   vote = async (from: string, to: string): Promise<void> => {
     try {
       await votePlayer(this.id, from, to);
+      this.error = undefined;
+    } catch (error) {
+      this.error = error.message;
+    }
+  };
+  @action
+  leaveGame = async (): Promise<void> => {
+    try {
+      await leaveGame(this.id, this.userId);
       this.error = undefined;
     } catch (error) {
       this.error = error.message;

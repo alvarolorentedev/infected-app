@@ -18,6 +18,7 @@ import {
 import { observer } from 'mobx-react';
 import { StyleSheet, Image, View, Share, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useFocusEffect } from '@react-navigation/core';
 import useStores from '../utils/useStores';
 import GameStore from '../stores/game';
 import GameStatus from '../types/GameStatus';
@@ -257,11 +258,20 @@ const InFreeState = (
   );
 };
 
-export const Game: React.FC<Props> = ({ gameStore }: Props) => {
+export const Game: React.FC<Props> = ({ gameStore, navigation }: Props) => {
   useEffect(() => {
-    gameStore.startRefresh();
+    const unsubscribe = navigation.addListener('blur', () => {
+      gameStore.leaveGame()
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      gameStore.getGame();
+    }, 5000);
     return () => {
-      gameStore.stopRefresh();
+      clearInterval(intervalId)
     };
   }, [gameStore]);
   const { game, userId } = gameStore;

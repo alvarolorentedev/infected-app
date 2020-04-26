@@ -10,6 +10,8 @@ import createGameQuery from './mutations/createGame.graphql';
 // @ts-ignore
 import joinGameQuery from './mutations/joinGame.graphql';
 // @ts-ignore
+import leaveGameQuery from './mutations/leaveGame.graphql';
+// @ts-ignore
 import startGameQuery from './mutations/startGame.graphql';
 // @ts-ignore
 import votePlayerQuery from './mutations/votePlayer.graphql';
@@ -22,6 +24,7 @@ import { CreateGameResponse } from '../types/CreateGameResponse';
 import { JoinGameResponse } from '../types/JoinGameResponse';
 import { StartGameResponse } from '../types/StartGameResponse';
 import { VotePlayerResponse } from '../types/VotePlayerResponse';
+import { LeaveGameResponse } from '../types/LeaveGameResponse';
 
 const settings = {
   headers: {
@@ -61,6 +64,25 @@ export const joinGame = async (
       settings
     )
   ).data.data.joinGame;
+};
+
+export const leaveGame = async (
+  gameId: string,
+  userId: string
+): Promise<SimpleResponse> => {
+  return (
+    await axios.post<GraphQlResponse<LeaveGameResponse>>(
+      `${ENV.SERVER_URL}/graphql`,
+      {
+        query: leaveGameQuery,
+        variables: {
+          gameId,
+          userId,
+        },
+      },
+      settings
+    )
+  ).data.data.leaveGame;
 };
 
 export const getGame = async (gameId: string): Promise<Game> => {
