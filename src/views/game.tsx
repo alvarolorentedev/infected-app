@@ -12,6 +12,8 @@ import {
   Button,
   Card as CardComponent,
   CardItem,
+  Footer,
+  FooterTab,
 } from 'native-base';
 import { observer } from 'mobx-react';
 import { StyleSheet, Image, View, Share, ScrollView } from 'react-native';
@@ -24,6 +26,7 @@ import { Player } from '../types/Player';
 import PlayerStatus from '../types/PlayerStatus';
 import Card from '../types/Card';
 import { Game as GameType } from '../types/Game';
+import { AdMobBanner } from 'expo-ads-admob';
 
 type RootStackParamList = {
   Home: undefined;
@@ -318,6 +321,14 @@ export const Game: React.FC<Props> = ({ gameStore }: Props) => {
           </List>
         </ScrollView>
       </Content>
+      <Footer>
+          <FooterTab>
+            <AdMobBanner
+              adUnitID="ca-app-pub-1195732568094557/5351150714"
+              servePersonalizedAds={false}
+              onDidFailToReceiveAdWithError={console.log} />
+        </FooterTab>
+      </Footer>
     </Container>
   );
 };
