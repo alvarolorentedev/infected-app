@@ -18,7 +18,7 @@ import {
 import { observer } from 'mobx-react';
 import { StyleSheet, Image, View, Share, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useFocusEffect } from '@react-navigation/core';
+import { AdMobBanner } from 'expo-ads-admob';
 import useStores from '../utils/useStores';
 import GameStore from '../stores/game';
 import GameStatus from '../types/GameStatus';
@@ -27,7 +27,6 @@ import { Player } from '../types/Player';
 import PlayerStatus from '../types/PlayerStatus';
 import Card from '../types/Card';
 import { Game as GameType } from '../types/Game';
-import { AdMobBanner } from 'expo-ads-admob';
 
 type RootStackParamList = {
   Home: undefined;
@@ -261,7 +260,7 @@ const InFreeState = (
 export const Game: React.FC<Props> = ({ gameStore, navigation }: Props) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
-      gameStore.leaveGame()
+      gameStore.leaveGame();
     });
 
     return unsubscribe;
@@ -271,7 +270,7 @@ export const Game: React.FC<Props> = ({ gameStore, navigation }: Props) => {
       gameStore.getGame();
     }, 5000);
     return () => {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
     };
   }, [gameStore]);
   const { game, userId } = gameStore;
@@ -332,11 +331,11 @@ export const Game: React.FC<Props> = ({ gameStore, navigation }: Props) => {
         </ScrollView>
       </Content>
       <Footer>
-          <FooterTab>
-            <AdMobBanner
-              adUnitID="ca-app-pub-1195732568094557/5351150714"
-              servePersonalizedAds={false}
-              onDidFailToReceiveAdWithError={console.log} />
+        <FooterTab>
+          <AdMobBanner
+            adUnitID="ca-app-pub-1195732568094557/5351150714"
+            servePersonalizedAds={false}
+          />
         </FooterTab>
       </Footer>
     </Container>

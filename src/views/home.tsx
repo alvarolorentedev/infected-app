@@ -15,9 +15,9 @@ import {
 import { observer } from 'mobx-react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, Image } from 'react-native';
+import { AdMobBanner } from 'expo-ads-admob';
 import useStores from '../utils/useStores';
 import GameStore from '../stores/game';
-import { AdMobBanner } from 'expo-ads-admob';
 
 type RootStackParamList = {
   Home: undefined;
@@ -115,11 +115,11 @@ export const Home: React.FC<Props> = ({ navigation, gameStore }: Props) => {
         </Button>
       </Content>
       <Footer>
-          <FooterTab>
-            <AdMobBanner
-              adUnitID="ca-app-pub-1195732568094557/5351150714"
-              servePersonalizedAds={false}
-              onDidFailToReceiveAdWithError={console.log} />
+        <FooterTab>
+          <AdMobBanner
+            adUnitID="ca-app-pub-1195732568094557/5351150714"
+            servePersonalizedAds={false}
+          />
         </FooterTab>
       </Footer>
     </Container>

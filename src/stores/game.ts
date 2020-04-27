@@ -5,7 +5,7 @@ import {
   getGame,
   startGame,
   votePlayer,
-  leaveGame
+  leaveGame,
 } from '../services/game';
 import { Game } from '../types/Game';
 
@@ -80,6 +80,7 @@ export default class GameStore {
       this.error = error.message;
     }
   };
+
   @action
   leaveGame = async (): Promise<void> => {
     try {
